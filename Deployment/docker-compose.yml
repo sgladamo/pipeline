@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  shield:
+    container_name: shield
+    image: shield:latest
+    restart: unless-stopped
+    environment:
+      - ASPNETCORE_URLS=http://+:81
+      - SYSPRO_DB_SERVER=172.16.10.115
+      - SYSPRO_DB_NAME=SysproCompanyB
+      - SYSPRO_DB_USERID=sa
+      - SYSPRO_DB_PASSWORD=mbl1175
+    ports:
+      - 81:81
+    networks:
+      - srt
+
+  f12:
+    container_name: f12
+    image: f12:latest
+    restart: unless-stopped
+    environment:
+      - SHIELD_API=http://172.16.10.43:81
+    # volumes:
+    #   - ./Certificates/server.crt:/etc/ssl/certs/server.crt
+    #   - ./Certificates/server.key:/etc/ssl/private/server.key
+    #   - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - shield
+    ports:
+      - 80:80
+      # - 443:443
+    networks:
+      - srt
+
+networks:
+  srt:
+    name: srt
