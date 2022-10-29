@@ -1,0 +1,44 @@
+﻿{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:21984",
+      "sslPort": 44332
+    }
+  },
+  "profiles": {
+    "Shield": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "launchUrl": "wip",
+      "applicationUrl": "https://localhost:7097;http://localhost:5097",
+      "environmentVariables": {
+        "PIPELINE_ACTIVATION_KEY": "RoXQTLIo8FOuQXkyX8hBrXMwgpQzwSHt/Uh1ZLVHWsThAWQuwlzuBweX8cc9pjXc1vf0icvOEcxllAOVPDByKCcWeF2OoIZI4jlq1Th2lawXv0Ao20E5kT0ZwU1j/hxCw1wgLFh9Wqnuz+39t//M+cP3Tdj5ncFXT/mEovMrzPvhj/AwNMgZsjAwhYMCOLcIjVClfYnkKKM3GFdRTvJENOeXB01csP04fffqAb6ABOORo+sTnP5BQ81T8BCmOtCzcfI60hpWUYq4PrW8tSk89bAK5wNWf9EG5MSeJ5tC3npYaODGJT5pVc6ken2p8/aAeiRfj5Gp9vUIRvDerU8CiRawq1xF5n4yl2B0fLeAGxoV3BYua66WigF/0O2lXgED5kCLxLnCJwFCcgZUWf67swwEMMl8vDdFlHExjF8V3U0HxLbWm3HplZtuOG2mSaaVJrfknXNuztsTb7yaKZcZ/yLNhLTupiNU4vXn9IxmoDuk5we+xhNarYj+Uph9t21wTPULySlq2Ds7rxVij5aMokUQfOHjVQDKqKcTJrXMO6sP13MnvIXWFfKuk5uUsSBOlOPaaXHDxrf8XufdvhofNTpSyW+rPXrqBj6qcfRj6RkNi30EmzlD5s1JZzEMJC5oawTg810pKKH2qdwgkJ4SoeMzerU6FCOabdMLaTemzfA=",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SYSPRO_DB_SERVER": "localhost",
+        "SYSPRO_DB_NAME": "SysproCompanyB",
+        "SYSPRO_DB_USERID": "shield",
+        "SYSPRO_DB_PASSWORD": "admin1234%"
+        //"SYSPRO_DB_SERVER": "192.168.0.216",
+        //"SYSPRO_DB_NAME": "SysproCompanyB",
+        //"SYSPRO_DB_USERID": "sa",
+        //"SYSPRO_DB_PASSWORD": "admin1234%",
+        //"SYSPRO_DB_SERVER": "172.16.10.115",
+        //"SYSPRO_DB_NAME": "SysproCompanyB",
+        //"SYSPRO_DB_USERID": "sa",
+        //"SYSPRO_DB_PASSWORD": "mbl1175"
+      }
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": false,
+      "launchUrl": "wip",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
