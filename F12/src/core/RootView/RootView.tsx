@@ -14,8 +14,8 @@ import {
   Stack,
   Snackbar,
   Alert,
+  Typography,
 } from "@mui/material";
-import Logo from "resources/svgs/logo.svg";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { CoreContext } from "core/context";
 import { MouseEvent, useLayoutEffect, useMemo, useState } from "react";
@@ -40,6 +40,7 @@ import Searchbar from "core/Searchbar";
 import ActivationView from "core/ActivationView/ActivationView";
 import { ActivationState } from "core/models";
 import { differenceInDays } from "date-fns";
+import Logo from "resources/svgs/logo.svg";
 
 const SearchableRoutes = [
   "/carousel",
@@ -73,19 +74,28 @@ function RootView() {
         palette: {
           mode: mode,
           primary: {
-            main: "#e51a0a",
+            main: mode === "dark" ? "#ffffffb3" : "#00000099",
+            // main: mode === "dark" ? "#005ECE" : "#006DF0",
+            // main: "#e51a0a"
           },
           secondary: {
             main: "#ffffff",
           },
+          info: {
+            main: "#006DF0",
+            dark: "#005ECE",
+          },
           success: {
-            main: "#90ee90",
+            main: "#7ED63E",
+            dark: "#5EAC24",
           },
           error: {
-            main: "#ff8a80",
+            main: "#ED1C24",
+            dark: "#D80027",
           },
           warning: {
-            main: "#ffd54f",
+            main: "#FFCD00",
+            dark: "#EBBF00",
           },
         },
         typography: {
@@ -168,7 +178,8 @@ function RootView() {
               setSearchValue={setSearchValue}
             />
           )}
-          <Box
+          <Stack
+            onClick={() => navigate("/")}
             sx={{
               position: "absolute",
               left: "50%",
@@ -178,16 +189,32 @@ function RootView() {
               },
               display: "flex",
             }}
-            onClick={() => navigate("/")}
+            alignItems="center"
+            direction="row"
+            spacing={0.5}
+            height="100%"
           >
             <img
               style={{
-                width: "150px",
+                width: "26px",
+                paddingTop: "1px",
               }}
               src={Logo}
               alt="logo"
             />
-          </Box>
+            <Stack direction="row">
+              <Typography
+                fontSize={32}
+                color={theme.palette.text.secondary}
+                fontWeight="bold"
+              >
+                PIPE
+              </Typography>
+              <Typography fontSize={32} color={theme.palette.text.secondary}>
+                LINE
+              </Typography>
+            </Stack>
+          </Stack>
           <Stack
             direction="row"
             sx={{
