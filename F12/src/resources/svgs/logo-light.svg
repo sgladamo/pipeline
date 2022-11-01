@@ -1,0 +1,18 @@
+<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="66" width="66" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title fill="#000000" fill-opacity="0.6">Layer 1</title>
+  <path fill-opacity="0.6" id="svg_1" fill="#000000" d="m36,25l-18,0a15,15 0 0 0 0,30l10,0l4,-5l-4,-5l-10,0a5,5 0 0 1 0,-10l18,0l-4,-5l4,-5z"/>
+  <polygon fill-opacity="0.6" id="svg_2" fill="#000000" points="28 55 45 55 45 61 61 50 45 39 45 45 28 45 32 50 28 55"/>
+  <polygon fill-opacity="0.6" id="svg_3" fill="#000000" points="28 5 3 5 3 15 28 15 32 10 28 5"/>
+  <path fill-opacity="0.6" id="svg_4" fill="#000000" d="m46,25l-10,0l-4,5l4,5l10,0a15,15 0 0 0 0,-30l-18,0l4,5l-4,5l18,0a5,5 0 0 1 0,10z"/>
+  <polygon opacity="0" fill-opacity="0.6" id="svg_5" fill="#000000" points="28 55 45 55 45 61 61 50 32 50 28 55"/>
+  <path opacity="0" fill-opacity="0.6" id="svg_6" fill="#000000" d="m18,30l14,0l4,-5l-18,0a15,15 0 0 0 0,30l10,0l4,-5l-14,0a10,10 0 0 1 0,-20z"/>
+  <polygon opacity="0" fill-opacity="0.6" id="svg_7" fill="#000000" points="28 15 32 10 3 10 3 15 28 15"/>
+  <path opacity="0" fill-opacity="0.6" id="svg_8" fill="#000000" d="m56,20a10,10 0 0 0 -10,-10l-14,0l-4,5l18,0a5,5 0 0 1 0,10l-10,0l-4,5l14,0a10,10 0 0 0 10,-10z"/>
+ </g>
+</svg>

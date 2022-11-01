@@ -41,6 +41,9 @@ import ActivationView from "core/ActivationView/ActivationView";
 import { ActivationState } from "core/models";
 import { differenceInDays } from "date-fns";
 import Logo from "resources/svgs/logo.svg";
+import LogoDark from "resources/svgs/logo-dark.svg";
+import LogoLight from "resources/svgs/logo-light.svg";
+import LogoCompany from "resources/svgs/logo-trelawny.svg";
 
 const SearchableRoutes = [
   "/carousel",
@@ -178,7 +181,27 @@ function RootView() {
               setSearchValue={setSearchValue}
             />
           )}
-          <Stack
+          <Box
+            sx={{
+              position: "absolute",
+              left: "50%",
+              transform: "translate(-50%, 0)",
+              ":hover": {
+                cursor: "pointer",
+              },
+              display: "flex",
+            }}
+            onClick={() => navigate("/")}
+          >
+            <img
+              style={{
+                width: "150px",
+              }}
+              src={LogoCompany}
+              alt="logo"
+            />
+          </Box>
+          {/* <Stack
             onClick={() => navigate("/")}
             sx={{
               position: "absolute",
@@ -214,7 +237,7 @@ function RootView() {
                 LINE
               </Typography>
             </Stack>
-          </Stack>
+          </Stack> */}
           <Stack
             direction="row"
             sx={{
@@ -327,6 +350,41 @@ function RootView() {
                 <Route path="/capacity/kpis" element={<CapacityKPIView />} />
               </Routes>
             )}
+            <Stack
+              sx={{
+                margin: 0,
+                top: "auto",
+                right: "auto",
+                bottom: 25,
+                left: 50,
+                position: "absolute",
+                opacity: 0.2,
+              }}
+              alignItems="center"
+              direction="row"
+              zIndex="tooltip"
+            >
+              <img
+                style={{
+                  width: "30px",
+                  paddingTop: "1px",
+                }}
+                src={theme.palette.mode === "dark" ? LogoDark : LogoLight}
+                alt="logo"
+              />
+              <Stack direction="row">
+                <Typography
+                  fontSize={36}
+                  color={theme.palette.text.secondary}
+                  fontWeight="bold"
+                >
+                  PIPE
+                </Typography>
+                <Typography fontSize={36} color={theme.palette.text.secondary}>
+                  LINE
+                </Typography>
+              </Stack>
+            </Stack>
           </Box>
           <Snackbar
             open={activationSnackbar && !activationSnackbarShown}
