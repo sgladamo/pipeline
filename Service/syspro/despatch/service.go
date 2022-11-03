@@ -8,16 +8,16 @@ import (
 )
 
 func Initialise(router *gin.Engine, database *sql.DB) {
-	router.GET("/v1/despatch/to-be-picked", ToBePicked(database))
-	router.GET("/v1/despatch/large-shipments", LargeShipments(database))
-	router.GET("/v1/despatch/packing", Packing(database))
-	router.GET("/v1/despatch/completed", Completed(database))
+	router.GET("/despatch/to-be-picked", ToBePicked(database))
+	router.GET("/despatch/large-shipments", LargeShipments(database))
+	router.GET("/despatch/packing", Packing(database))
+	router.GET("/despatch/completed", Completed(database))
 }
 
 func ToBePicked(db *sql.DB) gin.HandlerFunc {
 	fn := func(c *gin.Context) {
-		result := []DESPDashboard{}
-		statement := fmt.Sprintf("SELECT * FROM SysproCompanyB.dbo.DESPDashboard")
+		result := []DespDashboard{}
+		statement := fmt.Sprintf("SELECT * FROM SysproCompanyB.dbo.DespDashboard")
 		rows, qErr := db.Query(statement)
 		defer rows.Close()
 
@@ -35,7 +35,7 @@ func ToBePicked(db *sql.DB) gin.HandlerFunc {
 			}
 
 			if status == nil {
-				data := DESPDashboard{
+				data := DespDashboard{
 					DispatchNote:        dispatchNote,
 					DispatchNoteStatus:  dispatchNoteStatus,
 					Priority:            priority,
@@ -61,8 +61,8 @@ func ToBePicked(db *sql.DB) gin.HandlerFunc {
 
 func LargeShipments(db *sql.DB) gin.HandlerFunc {
 	fn := func(c *gin.Context) {
-		result := []DESPDashboard{}
-		statement := fmt.Sprintf("SELECT * FROM SysproCompanyB.dbo.DESPDashboard")
+		result := []DespDashboard{}
+		statement := fmt.Sprintf("SELECT * FROM SysproCompanyB.dbo.DespDashboard")
 		rows, qErr := db.Query(statement)
 		defer rows.Close()
 
@@ -81,7 +81,7 @@ func LargeShipments(db *sql.DB) gin.HandlerFunc {
 
 			if status != nil && readyToCollect == nil {
 				if *status == "Picking" {
-					data := DESPDashboard{
+					data := DespDashboard{
 						DispatchNote:        dispatchNote,
 						DispatchNoteStatus:  dispatchNoteStatus,
 						Priority:            priority,
@@ -108,8 +108,8 @@ func LargeShipments(db *sql.DB) gin.HandlerFunc {
 
 func Packing(db *sql.DB) gin.HandlerFunc {
 	fn := func(c *gin.Context) {
-		result := []DESPDashboard{}
-		statement := fmt.Sprintf("SELECT * FROM SysproCompanyB.dbo.DESPDashboard")
+		result := []DespDashboard{}
+		statement := fmt.Sprintf("SELECT * FROM SysproCompanyB.dbo.DespDashboard")
 		rows, qErr := db.Query(statement)
 		defer rows.Close()
 
@@ -128,7 +128,7 @@ func Packing(db *sql.DB) gin.HandlerFunc {
 
 			if status != nil && readyToCollect == nil {
 				if *status == "Complete" {
-					data := DESPDashboard{
+					data := DespDashboard{
 						DispatchNote:        dispatchNote,
 						DispatchNoteStatus:  dispatchNoteStatus,
 						Priority:            priority,
@@ -155,8 +155,8 @@ func Packing(db *sql.DB) gin.HandlerFunc {
 
 func Completed(db *sql.DB) gin.HandlerFunc {
 	fn := func(c *gin.Context) {
-		result := []DESPDashboard{}
-		statement := fmt.Sprintf("SELECT * FROM SysproCompanyB.dbo.DESPDashboard")
+		result := []DespDashboard{}
+		statement := fmt.Sprintf("SELECT * FROM SysproCompanyB.dbo.DespDashboard")
 		rows, qErr := db.Query(statement)
 		defer rows.Close()
 
@@ -175,7 +175,7 @@ func Completed(db *sql.DB) gin.HandlerFunc {
 
 			if status != nil && readyToCollect != nil {
 				if *status == "Complete" {
-					data := DESPDashboard{
+					data := DespDashboard{
 						DispatchNote:        dispatchNote,
 						DispatchNoteStatus:  dispatchNoteStatus,
 						Priority:            priority,

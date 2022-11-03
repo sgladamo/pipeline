@@ -1,6 +1,6 @@
 package despatch
 
-type DESPDashboard struct {
+type DespDashboard struct {
 	DispatchNote        string   `json:"dispatchNote"`
 	DispatchNoteStatus  string   `json:"dispatchNoteStatus"`
 	Priority            *float32 `json:"priority"`
