@@ -7,7 +7,14 @@ import (
 	"log"
 )
 
-func GetToBePicked(db *sql.DB) gin.HandlerFunc {
+func Initialise(router *gin.Engine, database *sql.DB) {
+	router.GET("/v1/despatch/to-be-picked", ToBePicked(database))
+	router.GET("/v1/despatch/large-shipments", LargeShipments(database))
+	router.GET("/v1/despatch/packing", Packing(database))
+	router.GET("/v1/despatch/completed", Completed(database))
+}
+
+func ToBePicked(db *sql.DB) gin.HandlerFunc {
 	fn := func(c *gin.Context) {
 		result := []DESPDashboard{}
 		statement := fmt.Sprintf("SELECT * FROM SysproCompanyB.dbo.DESPDashboard")
@@ -21,7 +28,7 @@ func GetToBePicked(db *sql.DB) gin.HandlerFunc {
 		for rows.Next() {
 			var dispatchNote, dispatchNoteStatus, accountNumber, customer, activeFlag, comment, salesOrder string
 			var packingInstructions, actualDeliveryDate, status, readyToCollect *string
-			var priority *float64
+			var priority *float32
 			sErr := rows.Scan(&dispatchNote, &dispatchNoteStatus, &priority, &packingInstructions, &accountNumber, &customer, &actualDeliveryDate, &activeFlag, &status, &readyToCollect, &comment, &salesOrder)
 			if sErr != nil {
 				log.Println("Error scanning row: " + sErr.Error())
@@ -52,7 +59,7 @@ func GetToBePicked(db *sql.DB) gin.HandlerFunc {
 	return fn
 }
 
-func GetLargeShipments(db *sql.DB) gin.HandlerFunc {
+func LargeShipments(db *sql.DB) gin.HandlerFunc {
 	fn := func(c *gin.Context) {
 		result := []DESPDashboard{}
 		statement := fmt.Sprintf("SELECT * FROM SysproCompanyB.dbo.DESPDashboard")
@@ -66,7 +73,7 @@ func GetLargeShipments(db *sql.DB) gin.HandlerFunc {
 		for rows.Next() {
 			var dispatchNote, dispatchNoteStatus, accountNumber, customer, activeFlag, comment, salesOrder string
 			var packingInstructions, actualDeliveryDate, status, readyToCollect *string
-			var priority *float64
+			var priority *float32
 			sErr := rows.Scan(&dispatchNote, &dispatchNoteStatus, &priority, &packingInstructions, &accountNumber, &customer, &actualDeliveryDate, &activeFlag, &status, &readyToCollect, &comment, &salesOrder)
 			if sErr != nil {
 				log.Println("Error scanning row: " + sErr.Error())
@@ -99,7 +106,7 @@ func GetLargeShipments(db *sql.DB) gin.HandlerFunc {
 	return fn
 }
 
-func GetPacking(db *sql.DB) gin.HandlerFunc {
+func Packing(db *sql.DB) gin.HandlerFunc {
 	fn := func(c *gin.Context) {
 		result := []DESPDashboard{}
 		statement := fmt.Sprintf("SELECT * FROM SysproCompanyB.dbo.DESPDashboard")
@@ -113,7 +120,7 @@ func GetPacking(db *sql.DB) gin.HandlerFunc {
 		for rows.Next() {
 			var dispatchNote, dispatchNoteStatus, accountNumber, customer, activeFlag, comment, salesOrder string
 			var packingInstructions, actualDeliveryDate, status, readyToCollect *string
-			var priority *float64
+			var priority *float32
 			sErr := rows.Scan(&dispatchNote, &dispatchNoteStatus, &priority, &packingInstructions, &accountNumber, &customer, &actualDeliveryDate, &activeFlag, &status, &readyToCollect, &comment, &salesOrder)
 			if sErr != nil {
 				log.Println("Error scanning row: " + sErr.Error())
@@ -146,7 +153,7 @@ func GetPacking(db *sql.DB) gin.HandlerFunc {
 	return fn
 }
 
-func GetCompleted(db *sql.DB) gin.HandlerFunc {
+func Completed(db *sql.DB) gin.HandlerFunc {
 	fn := func(c *gin.Context) {
 		result := []DESPDashboard{}
 		statement := fmt.Sprintf("SELECT * FROM SysproCompanyB.dbo.DESPDashboard")
@@ -160,7 +167,7 @@ func GetCompleted(db *sql.DB) gin.HandlerFunc {
 		for rows.Next() {
 			var dispatchNote, dispatchNoteStatus, accountNumber, customer, activeFlag, comment, salesOrder string
 			var packingInstructions, actualDeliveryDate, status, readyToCollect *string
-			var priority *float64
+			var priority *float32
 			sErr := rows.Scan(&dispatchNote, &dispatchNoteStatus, &priority, &packingInstructions, &accountNumber, &customer, &actualDeliveryDate, &activeFlag, &status, &readyToCollect, &comment, &salesOrder)
 			if sErr != nil {
 				log.Println("Error scanning row: " + sErr.Error())

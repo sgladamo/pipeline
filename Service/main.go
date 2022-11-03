@@ -29,9 +29,6 @@ func main() {
 	}
 
 	router := gin.Default()
-	router.GET("/v1/despatch/to-be-picked", despatch.GetToBePicked(database))
-	router.GET("/v1/despatch/large-shipments", despatch.GetLargeShipments(database))
-	router.GET("/v1/despatch/packing", despatch.GetPacking(database))
-	router.GET("/v1/despatch/completed", despatch.GetCompleted(database))
+	despatch.Initialise(router, database)
 	log.Fatal(router.Run("localhost:8000"))
 }
