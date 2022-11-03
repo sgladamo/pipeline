@@ -368,5 +368,3 @@ env-config.js
 node_modules/
 package-lock.json
 public/env-config.js
-
-Service/.fleet/
