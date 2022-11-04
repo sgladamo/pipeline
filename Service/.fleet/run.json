@@ -1,18 +1,19 @@
 {
-    "configurations": [
-        {
-            "type": "go",
-            "name": "service",
-            "goExecPath": "C:/Program Files/Go/bin/go.exe",
-            "buildParams": [
-                "$PROJECT_DIR$/main.go",
-            ],
-            "environment": {
-                "SYSPRO_DB_SERVER": "192.168.0.216",
-                "SYSPRO_DB_NAME": "SysproCompanyB",
-                "SYSPRO_DB_USERID": "sa",
-                "SYSPRO_DB_PASSWORD": "admin1234%"
-            },
-        }
-    ]
+  "configurations": [
+    {
+      "type": "go",
+      "name": "service",
+      "goExecPath": "C:/Program Files/Go/bin/go.exe",
+      "buildTargets": [
+        "$PROJECT_DIR$/main.go"
+      ],
+      "environment": {
+        "SYSPRO_DB_SERVER": "192.168.0.216",
+        "SYSPRO_DB_NAME": "SysproCompanyB",
+        "SYSPRO_DB_USERID": "sa",
+        "SYSPRO_DB_PASSWORD": "admin1234%",
+        "PIPELINE_ACTIVATION_KEY": "TEST"
+      }
+    }
+  ]
 }

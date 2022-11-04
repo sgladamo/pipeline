@@ -1,8 +1,8 @@
-import { SHIELD_API } from "core/config";
+import { SERVICE_API } from "core/config";
 import { DESPDashboard } from "despatch/models";
 
 export async function fetchToBePicked() {
-  let response = await fetch(`${SHIELD_API}/despatch/to-be-picked`);
+  let response = await fetch(`${SERVICE_API}/despatch/to-be-picked`);
   if (response.ok) {
     let json: DESPDashboard[] = await response.json();
     json.forEach((item) => {
@@ -27,7 +27,7 @@ export async function fetchToBePicked() {
 }
 
 export async function fetchLargeShipments() {
-  let response = await fetch(`${SHIELD_API}/despatch/large-shipments`);
+  let response = await fetch(`${SERVICE_API}/despatch/large-shipments`);
   if (response.ok) {
     let json: DESPDashboard[] = await response.json();
     json.forEach((item) => {
@@ -40,7 +40,7 @@ export async function fetchLargeShipments() {
 }
 
 export async function fetchPacking() {
-  let response = await fetch(`${SHIELD_API}/despatch/packing`);
+  let response = await fetch(`${SERVICE_API}/despatch/packing`);
   if (response.ok) {
     let json: DESPDashboard[] = await response.json();
     json.forEach((item) => {
@@ -53,7 +53,7 @@ export async function fetchPacking() {
 }
 
 export async function fetchCompleted() {
-  let response = await fetch(`${SHIELD_API}/despatch/completed`);
+  let response = await fetch(`${SERVICE_API}/despatch/completed`);
   if (response.ok) {
     let json: DESPDashboard[] = await response.json();
     json.forEach((item) => {

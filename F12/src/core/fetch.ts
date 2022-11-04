@@ -1,8 +1,8 @@
-import { SHIELD_API } from "core/config";
+import { SERVICE_API } from "core/config";
 import { ActivationState } from "core/models";
 
 export async function login(value: string) {
-  let response = await fetch(`${SHIELD_API}/authentication/login`, {
+  let response = await fetch(`${SERVICE_API}/authentication/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(value),
@@ -16,7 +16,7 @@ export async function login(value: string) {
 }
 
 export async function authenticate(sessionId: string) {
-  let response = await fetch(`${SHIELD_API}/authentication/authenticate`, {
+  let response = await fetch(`${SERVICE_API}/authentication/authenticate`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(sessionId),
@@ -29,21 +29,7 @@ export async function authenticate(sessionId: string) {
 }
 
 export async function fetchActivationState() {
-  let response = await fetch(`${SHIELD_API}/activation/state`);
-  if (response.ok) {
-    let json: ActivationState = await response.json();
-    return json;
-  } else {
-    return undefined;
-  }
-}
-
-export async function updateActivationState(key: string) {
-  let response = await fetch(`${SHIELD_API}/activation/state`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(key),
-  });
+  let response = await fetch(`${SERVICE_API}/activation/state`);
   if (response.ok) {
     let json: ActivationState = await response.json();
     return json;

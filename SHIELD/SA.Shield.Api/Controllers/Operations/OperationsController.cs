@@ -48,8 +48,7 @@ namespace SA.Shield.Api.Controllers.Operations
 
         [HttpPut]
         [Route("jobs/{job}/priority")]
-        public async Task UpdateJobPriorityAsync(string job, [FromBody] decimal priority)
-        {
+        public async Task UpdateJobPriorityAsync(string job, [FromBody] decimal priority){
             Logger.Debug($"Update Capacity Job Priority Requested [/capacity/jobs/{job}]: {RemoteInfo} Priority={priority}");
             await _operationsService.UpdateJobPriorityAsync(job, priority);
         }

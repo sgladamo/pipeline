@@ -1,9 +1,9 @@
-import { SHIELD_API } from "core/config";
+import { SERVICE_API } from "core/config";
 import { WipJobAllLab } from "core/models";
 import { WipCurrentOp, WipJobPickList } from "operations/models";
 
 export async function updateJobPriority(job: string, priority: number) {
-  await fetch(`${SHIELD_API}/operations/jobs/${job}/priority`, {
+  await fetch(`${SERVICE_API}/operations/jobs/${job}/priority`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(priority),
@@ -11,7 +11,7 @@ export async function updateJobPriority(job: string, priority: number) {
 }
 
 export async function updateJobCell(job: string, cell: string) {
-  await fetch(`${SHIELD_API}/operations/jobs/${job}/cell`, {
+  await fetch(`${SERVICE_API}/operations/jobs/${job}/cell`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(cell),
@@ -19,7 +19,7 @@ export async function updateJobCell(job: string, cell: string) {
 }
 
 export async function fetchWipAssemblyOps() {
-  let response = await fetch(`${SHIELD_API}/operations/assembly-ops`);
+  let response = await fetch(`${SERVICE_API}/operations/assembly-ops`);
   if (response.ok) {
     let json: WipCurrentOp[] = await response.json();
     json.sort((a, b) => (a.priority as number) - (b.priority as number));
@@ -28,7 +28,7 @@ export async function fetchWipAssemblyOps() {
 }
 
 export async function fetchTrolleyStorageOps() {
-  let response = await fetch(`${SHIELD_API}/operations/trolley-storage-ops`);
+  let response = await fetch(`${SERVICE_API}/operations/trolley-storage-ops`);
   if (response.ok) {
     let json: WipCurrentOp[] = await response.json();
     json.sort((a, b) => (a.priority as number) - (b.priority as number));
@@ -37,7 +37,7 @@ export async function fetchTrolleyStorageOps() {
 }
 
 export async function fetchCurrentOps() {
-  let response = await fetch(`${SHIELD_API}/operations/current-ops`);
+  let response = await fetch(`${SERVICE_API}/operations/current-ops`);
   if (response.ok) {
     let json: WipCurrentOp[] = await response.json();
     json.sort((a, b) => (a.priority as number) - (b.priority as number));
@@ -46,7 +46,7 @@ export async function fetchCurrentOps() {
 }
 
 export async function fetchJobAllOps(op: WipCurrentOp) {
-  let response = await fetch(`${SHIELD_API}/operations/all-ops?job=${op.job}`);
+  let response = await fetch(`${SERVICE_API}/operations/all-ops?job=${op.job}`);
   if (response.ok) {
     let json: WipJobAllLab[] = await response.json();
     return json;
@@ -55,7 +55,7 @@ export async function fetchJobAllOps(op: WipCurrentOp) {
 
 export async function fetchPickList(op: WipCurrentOp) {
   let response = await fetch(
-    `${SHIELD_API}/operations/pick-list?job=${op.job}`
+    `${SERVICE_API}/operations/pick-list?job=${op.job}`
   );
   if (response.ok) {
     let json: WipJobPickList[] = await response.json();
@@ -66,7 +66,7 @@ export async function fetchPickList(op: WipCurrentOp) {
 
 export async function fetchAssemblyCellJobs(cell: string) {
   let response = await fetch(
-    `${SHIELD_API}/operations/assembly-ops?cell=${cell}`
+    `${SERVICE_API}/operations/assembly-ops?cell=${cell}`
   );
   if (response.ok) {
     let json: WipCurrentOp[] = await response.json();
@@ -77,7 +77,7 @@ export async function fetchAssemblyCellJobs(cell: string) {
 
 export async function fetchTrolleyStorageJobs(cell: string) {
   let response = await fetch(
-    `${SHIELD_API}/operations/trolley-storage-ops?nextWorkCentreIMachine=${cell}`
+    `${SERVICE_API}/operations/trolley-storage-ops?nextWorkCentreIMachine=${cell}`
   );
   if (response.ok) {
     let json: WipCurrentOp[] = await response.json();
@@ -87,7 +87,7 @@ export async function fetchTrolleyStorageJobs(cell: string) {
 }
 
 export async function fetchPickingOps() {
-  let response = await fetch(`${SHIELD_API}/operations/picking-ops`);
+  let response = await fetch(`${SERVICE_API}/operations/picking-ops`);
   if (response.ok) {
     let json: WipCurrentOp[] = await response.json();
     json.sort((a, b) => (a.priority as number) - (b.priority as number));
@@ -103,8 +103,8 @@ export async function getTotalItems(
 ) {
   let response = await fetch(
     type
-      ? `${SHIELD_API}/kpi/operations/items?workCentre=${workCentre}&from=${from.toISOString()}&to=${to.toISOString()}&type=${type}`
-      : `${SHIELD_API}/kpi/operations/items?workCentre=${workCentre}&from=${from.toISOString()}&to=${to.toISOString()}`
+      ? `${SERVICE_API}/kpi/operations/items?workCentre=${workCentre}&from=${from.toISOString()}&to=${to.toISOString()}&type=${type}`
+      : `${SERVICE_API}/kpi/operations/items?workCentre=${workCentre}&from=${from.toISOString()}&to=${to.toISOString()}`
   );
   if (response.ok) {
     let json: number = await response.json();
@@ -115,8 +115,8 @@ export async function getTotalItems(
 export async function getForecastItems(date: Date, type: string | null) {
   let response = await fetch(
     type
-      ? `${SHIELD_API}/kpi/operations/items/forecast?date=${date.toISOString()}&type=${type}`
-      : `${SHIELD_API}/kpi/operations/items/forecast?date=${date.toISOString()}`
+      ? `${SERVICE_API}/kpi/operations/items/forecast?date=${date.toISOString()}&type=${type}`
+      : `${SERVICE_API}/kpi/operations/items/forecast?date=${date.toISOString()}`
   );
   if (response.ok) {
     let json: number = await response.json();

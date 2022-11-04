@@ -6,7 +6,7 @@ type WipCurrentOp struct {
 	WorkCentre             string   `json:"workCentre"`
 	StockCode              *string  `json:"stockCode"`
 	StockDescription       *string  `json:"stockDescription"`
-	LowestOP               *float32 `json:"lowestOp"`
+	LowestOP               *float32 `json:"lowestOP"`
 	Priority               *float32 `json:"priority"`
 	NextWorkCentre         *string  `json:"nextWorkCentre"`
 	NextWorkCentreIMachine *string  `json:"nextWorkCentreIMachine"`

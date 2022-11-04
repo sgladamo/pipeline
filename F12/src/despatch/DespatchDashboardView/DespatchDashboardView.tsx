@@ -125,7 +125,7 @@ function DespatchDashboardView() {
     fetchLargeShipments().then((data) => setLargeShipments(data));
     fetchPacking().then((data) => setPacking(data));
     fetchCompleted().then((data) => setCompleted(data));
-  }, 2500);
+  }, 5000);
 
   function handleFullScreenDialogOpen(table: string) {
     setFullScreenTable(table);

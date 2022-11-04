@@ -15,6 +15,7 @@ import {
   Snackbar,
   Alert,
   Typography,
+  Paper,
 } from "@mui/material";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { CoreContext } from "core/context";
@@ -41,8 +42,6 @@ import ActivationView from "core/ActivationView/ActivationView";
 import { ActivationState } from "core/models";
 import { differenceInDays } from "date-fns";
 import Logo from "resources/svgs/logo.svg";
-import LogoDark from "resources/svgs/logo-dark.svg";
-import LogoLight from "resources/svgs/logo-light.svg";
 import LogoCompany from "resources/svgs/logo-trelawny.svg";
 
 const SearchableRoutes = [
@@ -201,43 +200,6 @@ function RootView() {
               alt="logo"
             />
           </Box>
-          {/* <Stack
-            onClick={() => navigate("/")}
-            sx={{
-              position: "absolute",
-              left: "50%",
-              transform: "translate(-50%, 0)",
-              ":hover": {
-                cursor: "pointer",
-              },
-              display: "flex",
-            }}
-            alignItems="center"
-            direction="row"
-            spacing={0.5}
-            height="100%"
-          >
-            <img
-              style={{
-                width: "26px",
-                paddingTop: "1px",
-              }}
-              src={Logo}
-              alt="logo"
-            />
-            <Stack direction="row">
-              <Typography
-                fontSize={32}
-                color={theme.palette.text.secondary}
-                fontWeight="bold"
-              >
-                PIPE
-              </Typography>
-              <Typography fontSize={32} color={theme.palette.text.secondary}>
-                LINE
-              </Typography>
-            </Stack>
-          </Stack> */}
           <Stack
             direction="row"
             sx={{
@@ -320,7 +282,7 @@ function RootView() {
             component="main"
             sx={{
               flexGrow: 1,
-              height: "calc(100vh - 49px)",
+              height: "calc(100vh - 115px)",
               overflow: "auto",
               marginTop: 6,
               backgroundColor: theme.palette.background.default,
@@ -350,42 +312,52 @@ function RootView() {
                 <Route path="/capacity/kpis" element={<CapacityKPIView />} />
               </Routes>
             )}
+          </Box>
+          <Paper
+            component="footer"
+            sx={{
+              height: "66px",
+              borderTop: `0.5px solid ${theme.palette.divider}`,
+              borderRadius: 0,
+              backgroundColor:
+                theme.palette.mode === "dark"
+                  ? theme.palette.background.default
+                  : theme.palette.common.black,
+            }}
+            color="secondary"
+          >
             <Stack
-              sx={{
-                margin: 0,
-                top: "auto",
-                right: "auto",
-                bottom: 25,
-                left: 50,
-                position: "absolute",
-                opacity: 0.2,
-              }}
               alignItems="center"
               direction="row"
               zIndex="tooltip"
+              pl={2}
+              height="100%"
+              sx={{
+                opacity: 0.75,
+              }}
             >
               <img
                 style={{
                   width: "30px",
-                  paddingTop: "1px",
+                  paddingTop: "1.5px",
                 }}
-                src={theme.palette.mode === "dark" ? LogoDark : LogoLight}
+                src={Logo}
                 alt="logo"
               />
               <Stack direction="row">
                 <Typography
                   fontSize={36}
-                  color={theme.palette.text.secondary}
+                  color="rgba(255, 255, 255, 0.7)"
                   fontWeight="bold"
                 >
                   PIPE
                 </Typography>
-                <Typography fontSize={36} color={theme.palette.text.secondary}>
+                <Typography fontSize={36} color="rgba(255, 255, 255, 0.7)">
                   LINE
                 </Typography>
               </Stack>
             </Stack>
-          </Box>
+          </Paper>
           <Snackbar
             open={activationSnackbar && !activationSnackbarShown}
             onClose={handleCloseActivationSnackbar}

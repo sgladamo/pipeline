@@ -15,8 +15,8 @@ function DashboardFab(props: DashboardFabProps) {
         sx={{
           margin: 0,
           top: "auto",
-          right: 75,
-          bottom: 50,
+          right: 50,
+          bottom: 100,
           left: "auto",
           position: "fixed",
         }}

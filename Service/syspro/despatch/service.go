@@ -2,23 +2,26 @@ package despatch
 
 import (
 	"database/sql"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"log"
+	"pipeline/pipeline-service/syspro/core/activation"
 )
 
 func Initialise(router *gin.Engine, database *sql.DB) {
-	router.GET("/despatch/to-be-picked", ToBePicked(database))
-	router.GET("/despatch/large-shipments", LargeShipments(database))
-	router.GET("/despatch/packing", Packing(database))
-	router.GET("/despatch/completed", Completed(database))
+	activated := router.Group("/")
+	activated.Use(activation.Authorise)
+	{
+		activated.GET("/despatch/to-be-picked", toBePicked(database))
+		activated.GET("/despatch/large-shipments", largeShipments(database))
+		activated.GET("/despatch/packing", packing(database))
+		activated.GET("/despatch/completed", completed(database))
+	}
 }
 
-func ToBePicked(db *sql.DB) gin.HandlerFunc {
+func toBePicked(db *sql.DB) gin.HandlerFunc {
 	fn := func(c *gin.Context) {
 		result := []DespDashboard{}
-		statement := fmt.Sprintf("SELECT * FROM SysproCompanyB.dbo.DespDashboard")
-		rows, qErr := db.Query(statement)
+		rows, qErr := db.Query("SELECT * FROM SysproCompanyB.dbo.DESPDashboard")
 		defer rows.Close()
 
 		if qErr != nil {
@@ -59,11 +62,10 @@ func ToBePicked(db *sql.DB) gin.HandlerFunc {
 	return fn
 }
 
-func LargeShipments(db *sql.DB) gin.HandlerFunc {
+func largeShipments(db *sql.DB) gin.HandlerFunc {
 	fn := func(c *gin.Context) {
 		result := []DespDashboard{}
-		statement := fmt.Sprintf("SELECT * FROM SysproCompanyB.dbo.DespDashboard")
-		rows, qErr := db.Query(statement)
+		rows, qErr := db.Query("SELECT * FROM SysproCompanyB.dbo.DESPDashboard")
 		defer rows.Close()
 
 		if qErr != nil {
@@ -106,11 +108,10 @@ func LargeShipments(db *sql.DB) gin.HandlerFunc {
 	return fn
 }
 
-func Packing(db *sql.DB) gin.HandlerFunc {
+func packing(db *sql.DB) gin.HandlerFunc {
 	fn := func(c *gin.Context) {
 		result := []DespDashboard{}
-		statement := fmt.Sprintf("SELECT * FROM SysproCompanyB.dbo.DespDashboard")
-		rows, qErr := db.Query(statement)
+		rows, qErr := db.Query("SELECT * FROM SysproCompanyB.dbo.DESPDashboard")
 		defer rows.Close()
 
 		if qErr != nil {
@@ -153,11 +154,10 @@ func Packing(db *sql.DB) gin.HandlerFunc {
 	return fn
 }
 
-func Completed(db *sql.DB) gin.HandlerFunc {
+func completed(db *sql.DB) gin.HandlerFunc {
 	fn := func(c *gin.Context) {
 		result := []DespDashboard{}
-		statement := fmt.Sprintf("SELECT * FROM SysproCompanyB.dbo.DespDashboard")
-		rows, qErr := db.Query(statement)
+		rows, qErr := db.Query("SELECT * FROM SysproCompanyB.dbo.DESPDashboard")
 		defer rows.Close()
 
 		if qErr != nil {
