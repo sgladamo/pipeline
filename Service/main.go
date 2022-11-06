@@ -7,6 +7,7 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"log"
+	"pipeline/pipeline-service/syspro/capacity"
 	"pipeline/pipeline-service/syspro/core"
 	"pipeline/pipeline-service/syspro/despatch"
 	"pipeline/pipeline-service/syspro/operations"
@@ -39,6 +40,7 @@ func main() {
 		AllowHeaders: []string{"*"},
 	}))
 	core.Initialise(router)
+	capacity.Initialise(router, database)
 	operations.Initialise(router, database)
 	despatch.Initialise(router, database)
 	log.Fatal(router.Run("localhost:8000"))

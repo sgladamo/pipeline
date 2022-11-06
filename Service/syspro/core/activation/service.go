@@ -106,6 +106,7 @@ func Initialise(router *gin.Engine) {
 		Key:     "",
 		EndDate: "",
 	}
+	updateState()
 	router.GET("/activation/state", state)
 }
 

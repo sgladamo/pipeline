@@ -22,7 +22,6 @@ func toBePicked(db *sql.DB) gin.HandlerFunc {
 	fn := func(c *gin.Context) {
 		result := []DespDashboard{}
 		rows, qErr := db.Query("SELECT * FROM SysproCompanyB.dbo.DESPDashboard")
-		defer rows.Close()
 
 		if qErr != nil {
 			log.Println("Error reading rows: " + qErr.Error())
@@ -66,7 +65,6 @@ func largeShipments(db *sql.DB) gin.HandlerFunc {
 	fn := func(c *gin.Context) {
 		result := []DespDashboard{}
 		rows, qErr := db.Query("SELECT * FROM SysproCompanyB.dbo.DESPDashboard")
-		defer rows.Close()
 
 		if qErr != nil {
 			log.Println("Error reading rows: " + qErr.Error())
@@ -112,7 +110,6 @@ func packing(db *sql.DB) gin.HandlerFunc {
 	fn := func(c *gin.Context) {
 		result := []DespDashboard{}
 		rows, qErr := db.Query("SELECT * FROM SysproCompanyB.dbo.DESPDashboard")
-		defer rows.Close()
 
 		if qErr != nil {
 			log.Println("Error reading rows: " + qErr.Error())
@@ -158,7 +155,6 @@ func completed(db *sql.DB) gin.HandlerFunc {
 	fn := func(c *gin.Context) {
 		result := []DespDashboard{}
 		rows, qErr := db.Query("SELECT * FROM SysproCompanyB.dbo.DESPDashboard")
-		defer rows.Close()
 
 		if qErr != nil {
 			log.Println("Error reading rows: " + qErr.Error())

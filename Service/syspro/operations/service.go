@@ -41,8 +41,6 @@ func currentOps(db *sql.DB) gin.HandlerFunc {
 			rows, qErr = db.Query("SELECT * FROM SysproCompanyB.dbo.WIPCurrentOp")
 		}
 
-		defer rows.Close()
-
 		if qErr != nil {
 			log.Println("Error reading rows: " + qErr.Error())
 		}
@@ -102,8 +100,6 @@ func allOps(db *sql.DB) gin.HandlerFunc {
 			rows, qErr = db.Query("SELECT Job, Operation, WorkCentre, WorkCentreDesc, OperCompleted, PlannedEndDate, IMachine, QtyCompleted, ActualFinishDate FROM SysproCompanyB.dbo.WipJobAllLab")
 		}
 
-		defer rows.Close()
-
 		if qErr != nil {
 			log.Println("Error reading rows: " + qErr.Error())
 		}
@@ -151,8 +147,6 @@ func assemblyOps(db *sql.DB) gin.HandlerFunc {
 		} else {
 			rows, qErr = db.Query("SELECT * FROM SysproCompanyB.dbo.WIPCurrentOp WHERE WorkCentre = 'ASSY01'")
 		}
-
-		defer rows.Close()
 
 		if qErr != nil {
 			log.Println("Error reading rows: " + qErr.Error())
@@ -213,8 +207,6 @@ func trolleyStorageOps(db *sql.DB) gin.HandlerFunc {
 			rows, qErr = db.Query("SELECT * FROM SysproCompanyB.dbo.WIPCurrentOp WHERE WorkCentre = 'TROL01'")
 		}
 
-		defer rows.Close()
-
 		if qErr != nil {
 			log.Println("Error reading rows: " + qErr.Error())
 		}
@@ -263,7 +255,6 @@ func pickingOps(db *sql.DB) gin.HandlerFunc {
 	fn := func(c *gin.Context) {
 		result := []WipCurrentOp{}
 		rows, qErr := db.Query("SELECT * FROM SysproCompanyB.dbo.WIPCurrentOp WHERE WorkCentre = 'PICK01'")
-		defer rows.Close()
 
 		if qErr != nil {
 			log.Println("Error reading rows: " + qErr.Error())
@@ -314,7 +305,6 @@ func pickList(db *sql.DB) gin.HandlerFunc {
 		job := c.Query("job")
 		result := []WipJobPickList{}
 		rows, qErr := db.Query("SELECT * FROM SysproCompanyB.dbo.WIPJobPickList WHERE Job = @p1", job)
-		defer rows.Close()
 
 		if qErr != nil {
 			log.Println("Error reading rows: " + qErr.Error())
