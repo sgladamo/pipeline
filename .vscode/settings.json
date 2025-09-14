@@ -1,8 +1,9 @@
 {
   "typescript.preferences.includePackageJsonAutoImports": "on",
   "typescript.suggest.autoImports": true,
-  "eslint.workingDirectories": ["apps/web"],
-  "omnisharp.defaultLaunchSolution": "apps/api/Shield.sln",
+  "eslint.workingDirectories": [
+    "apps/web"
+  ],
   "files.exclude": {
     "**/node_modules": true,
     "**/bin": true,
@@ -14,5 +15,6 @@
     "**/node_modules": true,
     "**/bin": true,
     "**/obj": true
-  }
+  },
+  "dotnet.defaultSolution": "apps/api/Shield.sln"
 }
